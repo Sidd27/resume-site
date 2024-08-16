@@ -1,7 +1,32 @@
+import About from "./components/About";
+import Expereince from "./components/Experience";
+import Information from "./components/Information";
+import ProfileDetails from "./components/ProfileDetails";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
+
 function App() {
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <header className="mb-8">
+    <div className="flex max-w-5xl mx-auto p-6">
+      <div className="flex flex-col gap-4 max-w-80">
+        <ProfileDetails />
+        <About />
+        <Information />
+      </div>
+      <div className="ml-4 w-full">
+        <Tabs defaultValue="experience">
+          <TabsList className="grid w-full grid-cols-3 bg-white">
+            <TabsTrigger value="experience">Experience</TabsTrigger>
+            <TabsTrigger value="education">Education</TabsTrigger>
+            <TabsTrigger value="blog">Blogs</TabsTrigger>
+          </TabsList>
+          <TabsContent value="experience">
+            <Expereince />
+          </TabsContent>
+          <TabsContent value="education">Edu</TabsContent>
+          <TabsContent value="blog">Blogs</TabsContent>
+        </Tabs>
+      </div>
+      {/* <header className="mb-8">
         <h1 className="text-4xl font-bold text-primary">Siddharth Pandey</h1>
         <p>
           401, PJC Prince, AECS Layout, Singasandra, Bangalore, Karnataka -
@@ -262,7 +287,7 @@ function App() {
           Taken part in scout & guide in school and achieved a rank of 3rd
           Sopan.
         </p>
-      </section>
+      </section> */}
     </div>
   );
 }
