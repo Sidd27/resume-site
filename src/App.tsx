@@ -52,7 +52,7 @@ function App() {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold text-primary">Experience</h2>
 
-        <div className="pl-4 border-l-4 border-primary mb-4">
+        <!-- <div className="pl-4 border-l-4 border-primary mb-4">
           <h3 className="text-xl font-bold">
             Lead Software Engineer, HyperTrack
           </h3>
@@ -78,7 +78,7 @@ function App() {
             Zustand, Recoil, JavaScript, HTML, CSS, CSS3, Material - UI,
             Tailwind, Radix UI. Storybook
           </p>
-        </div>
+        </div> -->
 
         <div className="pl-4 border-l-4 border-primary mb-4">
           <h3 className="text-xl font-bold">
