@@ -52,34 +52,6 @@ function App() {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold text-primary">Experience</h2>
 
-        <!-- <div className="pl-4 border-l-4 border-primary mb-4">
-          <h3 className="text-xl font-bold">
-            Lead Software Engineer, HyperTrack
-          </h3>
-          <p className="italic">Sep 2022 - Present</p>
-          <p>
-            Job Description: To understand the project which is being assigned,
-            design the project architecture, write good quality, groom other
-            developers, with end to end product understanding. Take care of
-            site/product performance aspects while coding. Review code and
-            ensure code changes meet quality, are bug free, etc.
-            Implement/develop global solutions to help the smooth functioning of
-            development. Test the code which we have written properly as we
-            don’t separate the QA team. Deploy Code on production, Interact
-            directly with customers and resolve their issues.
-          </p>
-          <p>
-            Projects: Made Micro Frontend UI Dashboard from Scratch in React
-            using webpack module federation, Worked on existing Last Mile Fleet
-            Management Dashboard, Made design system for complete organization.
-          </p>
-          <p>
-            Technologies: React 18 with Typescript, Webpack Module Federation,
-            Zustand, Recoil, JavaScript, HTML, CSS, CSS3, Material - UI,
-            Tailwind, Radix UI. Storybook
-          </p>
-        </div> -->
-
         <div className="pl-4 border-l-4 border-primary mb-4">
           <h3 className="text-xl font-bold">
             Associate Technical Architect, Telio
