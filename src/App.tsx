@@ -18,7 +18,7 @@ function App() {
         </div>
         <div className="md:ml-4 w-full mt-4 md:mt-0">
           <Tabs defaultValue="experience">
-            <TabsList className="grid w-full grid-cols-3 bg-white dark:bg-gray-800 sticky top-0 z-10 md:static">
+            <TabsList className="grid w-full grid-cols-3 bg-white dark:bg-gray-800 sticky top-0 z-10 md:static shadow-lg md:shadow-none">
               <TabsTrigger value="experience">Experience</TabsTrigger>
               <TabsTrigger value="education">Education</TabsTrigger>
               <TabsTrigger value="blog">Blogs</TabsTrigger>
