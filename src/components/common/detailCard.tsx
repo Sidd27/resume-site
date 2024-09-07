@@ -34,24 +34,23 @@ const DetailCard: React.FunctionComponent<IDetailCardProps> = ({
       />
       <div className="ml-4 relative">
         <div className="text-foreground font-semibold">{title}</div>
-        <div className="flex space-x-4 text-muted-foreground mt-2">
+        <div className="flex gap-2 text-muted-foreground mt-2 md:gap-4 flex-wrap">
           <div className="text-xs flex space-x-1 items-center">
-            {primaryIcon}
-
+            <span className="shrink-0">{primaryIcon}</span>
             <span>{company}</span>
           </div>
           <div className="text-xs flex space-x-1 items-center">
-            <MapPin size="14" />
+            <MapPin size="14" className="shrink-0" />
             <span>{location}</span>
           </div>
           <div className="text-xs flex space-x-1 items-center">
-            <Calendar size="14" />
+            <Calendar size="14" className="shrink-0" />
             <span>{dateRange}</span>
           </div>
         </div>
         <p className="mt-4 text-muted-foreground">{description}</p>
         {badge && (
-          <div className="absolute top-0 right-0">
+          <div className="absolute top-0 right-0 hidden md:block">
             <Badge>{badge}</Badge>
           </div>
         )}
