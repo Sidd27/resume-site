@@ -7,7 +7,12 @@ const Divider: React.FunctionComponent<IDividerProps> = ({
   className,
   ...props
 }) => {
-  return <hr className={cn("my-4 h-0 border-t-1", className)} {...props} />;
+  return (
+    <hr
+      className={cn("my-4 h-0 border-t-1 dark:border-gray-600", className)}
+      {...props}
+    />
+  );
 };
 
 export default Divider;

@@ -17,15 +17,17 @@ const About: React.FunctionComponent<IAboutProps> = () => {
         About me
       </CustomHeader>
       <InnerCard>
-        I am passionate about using technology to solve real-world problems. I
-        am always looking for new ways to improve the user experience and make
-        software more accessible to everyone. I am also a strong advocate for
-        open source software and I am always willing to contribute to the
-        community.
+        <div className="text-muted-foreground">
+          I am passionate about using technology to solve real-world problems. I
+          am always looking for new ways to improve the user experience and make
+          software more accessible to everyone. I am also a strong advocate for
+          open source software and I am always willing to contribute to the
+          community.
+        </div>
         <Divider />
         <div className="flex flex-col space-y-2">
           <a
-            className="flex items-center text-black"
+            className="flex items-center text-foreground"
             href="mailto:pandeysiddharth27@gmail.com"
           >
             <Mail className="mr-2" size={16} />
@@ -34,15 +36,15 @@ const About: React.FunctionComponent<IAboutProps> = () => {
           <div className="flex items-center">
             <Phone className="mr-2" size={16} />
             <a
-              className="flex items-center text-black"
+              className="flex items-center text-foreground"
               href="tel:+918867341449"
             >
               8867341449
             </a>
-            <span className="mx-2">|</span>
+            <span className="mx-2 text-muted-foreground">|</span>
 
             <a
-              className="flex items-center text-black"
+              className="flex items-center text-foreground"
               href="tel:+919752012227"
             >
               9752012227
@@ -51,7 +53,7 @@ const About: React.FunctionComponent<IAboutProps> = () => {
           <Divider />
           <div className="flex space-x-2">
             <a
-              className="flex items-center text-black"
+              className="flex items-center text-foreground"
               href="https://www.npmjs.com/~sidd27"
               target="_blank"
             >
@@ -59,7 +61,7 @@ const About: React.FunctionComponent<IAboutProps> = () => {
               NPM
             </a>
             <a
-              className="flex items-center text-black"
+              className="flex items-center text-foreground"
               href="https://github.com/Sidd27"
               target="_blank"
             >

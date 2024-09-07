@@ -6,7 +6,10 @@ export const OuterCard: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({
   ...props
 }) => {
   return (
-    <div className={cn("p-1.5 bg-white rounded-lg", className)} {...props} />
+    <div
+      className={cn("p-1.5 bg-white rounded-lg dark:bg-slate-900", className)}
+      {...props}
+    />
   );
 };
 
@@ -17,7 +20,7 @@ export const InnerCard: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       className={cn(
-        "mt-4 bg-gray-50 rounded-md p-4 text-gray-600 text-sm leading-6",
+        "mt-4 bg-gray-50 rounded-md p-4 text-sm leading-6 dark:bg-slate-800 ",
         className
       )}
       {...props}

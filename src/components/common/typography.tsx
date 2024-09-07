@@ -14,7 +14,7 @@ export const CustomHeader: FunctionComponent<CustomerHeaderProps> = ({
   return (
     <h2
       className={cn(
-        "text-md font-medium px-4 mt-2 flex space-x-2 items-center text-black",
+        "text-md font-medium px-4 mt-2 flex space-x-2 items-center text-foreground",
         className
       )}
       {...props}

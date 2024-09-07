@@ -14,26 +14,26 @@ const Information: React.FunctionComponent<IInformationProps> = () => {
       >
         Information
       </CustomHeader>
-      <InnerCard className="divide-y">
+      <InnerCard className="divide-y dark:divide-gray-600">
         <div className="flex justify-between pb-2">
-          <span>Location</span>
-          <span className="text-black">Bengaluru, Karnataka</span>
+          <span className="text-muted-foreground">Location</span>
+          <span className="text-foreground">Bengaluru, Karnataka</span>
         </div>
         <div className="flex justify-between py-2">
-          <span>Experience</span>
-          <span className="text-black"> {">"} 11 Years</span>
+          <span className="text-muted-foreground">Experience</span>
+          <span className="text-foreground"> {">"} 11 Years</span>
         </div>
         <div className="flex justify-between py-2">
-          <span>Availability</span>
-          <span className="text-black">in 1 Month</span>
+          <span className="text-muted-foreground">Availability</span>
+          <span className="text-foreground">in 1 Month</span>
         </div>
         <div className="flex justify-between py-2">
-          <span>Remote</span>
-          <span className="text-black">Yes</span>
+          <span className="text-muted-foreground">Remote</span>
+          <span className="text-foreground">Yes</span>
         </div>
         <div className="flex justify-between pt-2">
-          <span>Relocation</span>
-          <span className="text-black">No</span>
+          <span className="text-muted-foreground">Relocation</span>
+          <span className="text-foreground">No</span>
         </div>
       </InnerCard>
     </OuterCard>

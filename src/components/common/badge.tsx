@@ -8,7 +8,7 @@ const Badge: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       className={cn(
-        "inline-block bg-zinc-200 text-zinc-600 rounded px-2 py-1 text-xs",
+        "inline-block bg-slate-200 text-slate-600 rounded px-2 py-1 text-xs dark:bg-slate-600 dark:text-slate-300",
         className
       )}
       {...props}
