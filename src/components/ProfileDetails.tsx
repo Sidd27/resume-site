@@ -24,26 +24,28 @@ const ProfileDetails: React.FunctionComponent<IProfileDetailsProps> = () => {
       <OuterCard>
         <div className="ml-4">
           <div className="text-md font-medium">Siddharth Pandey</div>
-          <div className="text-sm">Javascript Developer, India</div>
+          <div className="text-sm">Staff Frontend Platform Engineer, India</div>
         </div>
         <InnerCard>
           <div className="text-muted-foreground">
-            Javascript developer with 11+ years of experience in building
-            web/hybrid apps. Skilled in React, Angular, Svelte, Node.js, MongoDB
-            and SQL.
+            Staff Frontend Platform Engineer with 13+ years of experience
+            designing and scaling frontend platforms, microfrontend
+            architectures, and real-time distributed web systems across
+            logistics, fintech, and ecommerce domains.
           </div>
           <div className="flex mt-4 flex-wrap gap-1">
-            <Badge>Javascript</Badge>
             <Badge>React</Badge>
-            <Badge>Node.js</Badge>
-            <Badge>ExpressJS</Badge>
-            <Badge>Angular</Badge>
+            <Badge>TypeScript</Badge>
             <Badge>Svelte</Badge>
-            <Badge>MongoDB</Badge>
-            <Badge>SQL</Badge>
-            <Badge>Git</Badge>
+            <Badge>Angular</Badge>
+            <Badge>Node.js</Badge>
+            <Badge>GraphQL</Badge>
+            <Badge>WebSockets</Badge>
+            <Badge>AWS</Badge>
+            <Badge>Microfrontends</Badge>
             <Badge>Tailwind</Badge>
-            <Badge>Material UI</Badge>
+            <Badge>MongoDB</Badge>
+            <Badge>PostgreSQL</Badge>
           </div>
         </InnerCard>
       </OuterCard>

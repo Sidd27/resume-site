@@ -21,7 +21,7 @@ const Information: React.FunctionComponent<IInformationProps> = () => {
         </div>
         <div className="flex justify-between py-2">
           <span className="text-muted-foreground">Experience</span>
-          <span className="text-foreground"> {">"} 11 Years</span>
+          <span className="text-foreground"> {">"} 13 Years</span>
         </div>
         <div className="flex justify-between py-2">
           <span className="text-muted-foreground">Availability</span>

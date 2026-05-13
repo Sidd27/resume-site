@@ -18,11 +18,15 @@ const About: React.FunctionComponent<IAboutProps> = () => {
       </CustomHeader>
       <InnerCard>
         <div className="text-muted-foreground">
-          I am passionate about using technology to solve real-world problems. I
-          am always looking for new ways to improve the user experience and make
-          software more accessible to everyone. I am also a strong advocate for
-          open source software and I am always willing to contribute to the
-          community.
+          Staff Frontend Platform Engineer with 13+ years of experience
+          designing and scaling frontend platforms, microfrontend architectures,
+          and real-time distributed web systems across logistics, fintech, and
+          ecommerce domains. Track record of owning frontend platform
+          modernization, performance engineering, and multi-team developer
+          infrastructure at scale. Recent work spans AI-assisted operational
+          systems, retrieval-based debugging workflows, and
+          infrastructure-aware frontend architectures built on React,
+          TypeScript, Svelte, Node.js, and AWS.
         </div>
         <Divider />
         <div className="flex flex-col space-y-2">
