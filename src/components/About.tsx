@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InnerCard, OuterCard } from "./common/Cards";
 import { CustomHeader } from "./common/typography";
-import { Mail, Phone, Square } from "lucide-react";
+import { Mail, Square } from "lucide-react";
 import { BULLET_COLOR } from "../constants";
 import Divider from "./common/divider";
 import { GITHUB_ICON, NPM_ICON } from "./common/icons";
@@ -17,47 +17,26 @@ const About: React.FunctionComponent<IAboutProps> = () => {
         About me
       </CustomHeader>
       <InnerCard>
-        <div className="text-muted-foreground">
-          Staff Frontend Platform Engineer with 13+ years of experience
-          designing and scaling frontend platforms, microfrontend architectures,
-          and real-time distributed web systems across logistics, fintech, and
-          ecommerce domains. Track record of owning frontend platform
-          modernization, performance engineering, and multi-team developer
-          infrastructure at scale. Recent work spans AI-assisted operational
-          systems, retrieval-based debugging workflows, and
-          infrastructure-aware frontend architectures built on React,
-          TypeScript, Svelte, Node.js, and AWS.
+        <div className="text-muted-foreground text-sm">
+          Track record of owning frontend platform modernization, performance
+          engineering, and multi-team developer infrastructure at scale. Recent
+          work spans AI-assisted operational systems, retrieval-based debugging
+          workflows, and infrastructure-aware frontend architectures built on
+          React, TypeScript, Svelte, Node.js, and AWS.
         </div>
         <Divider />
         <div className="flex flex-col space-y-2">
           <a
-            className="flex items-center text-foreground"
+            className="flex items-center text-foreground text-sm"
             href="mailto:pandeysiddharth27@gmail.com"
           >
             <Mail className="mr-2" size={16} />
             pandeysiddharth27@gmail.com
           </a>
-          <div className="flex items-center">
-            <Phone className="mr-2" size={16} />
-            <a
-              className="flex items-center text-foreground"
-              href="tel:+918867341449"
-            >
-              8867341449
-            </a>
-            <span className="mx-2 text-muted-foreground">|</span>
-
-            <a
-              className="flex items-center text-foreground"
-              href="tel:+919752012227"
-            >
-              9752012227
-            </a>
-          </div>
           <Divider />
           <div className="flex space-x-2">
             <a
-              className="flex items-center text-foreground"
+              className="flex items-center text-foreground text-sm"
               href="https://www.npmjs.com/~sidd27"
               target="_blank"
             >
@@ -65,7 +44,7 @@ const About: React.FunctionComponent<IAboutProps> = () => {
               NPM
             </a>
             <a
-              className="flex items-center text-foreground"
+              className="flex items-center text-foreground text-sm"
               href="https://github.com/Sidd27"
               target="_blank"
             >
