@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import About from "./components/About";
 import Blogs from "./components/Blogs";
 import Education from "./components/Education";
@@ -7,7 +8,28 @@ import ProfileDetails from "./components/ProfileDetails";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { ThemeProvider } from "./theme-provider";
 
+const TABS = ["experience", "education", "blog"] as const;
+type Tab = (typeof TABS)[number];
+
+function getTabFromHash(): Tab {
+  const hash = window.location.hash.replace("#", "") as Tab;
+  return TABS.includes(hash) ? hash : "experience";
+}
+
 function App() {
+  const [activeTab, setActiveTab] = useState<Tab>(getTabFromHash);
+
+  useEffect(() => {
+    const onHashChange = () => setActiveTab(getTabFromHash());
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  function handleTabChange(value: string) {
+    window.location.hash = value;
+    setActiveTab(value as Tab);
+  }
+
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <div className="md:flex max-w-5xl mx-auto md:p-6 p-2">
@@ -17,7 +39,7 @@ function App() {
           <Information />
         </div>
         <div className="md:ml-4 w-full mt-4 md:mt-0">
-          <Tabs defaultValue="experience">
+          <Tabs value={activeTab} onValueChange={handleTabChange}>
             <TabsList className="grid w-full grid-cols-3 bg-white dark:bg-gray-800 sticky top-0 z-10 md:static shadow-lg md:shadow-none">
               <TabsTrigger value="experience">Experience</TabsTrigger>
               <TabsTrigger value="education">Education</TabsTrigger>

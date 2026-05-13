@@ -1,9 +1,12 @@
 import * as React from "react";
+import { useState } from "react";
 import { InnerCard, OuterCard } from "./common/Cards";
 import { CustomHeader } from "./common/typography";
 import { Square } from "lucide-react";
 import { BULLET_COLOR } from "@/constants";
 import { useBlogs } from "@/hooks/useBlogs";
+
+const PAGE_SIZE = 5;
 
 interface IBlogsProps {}
 
@@ -32,6 +35,8 @@ const BlogSkeleton: React.FC = () => (
 
 const Blogs: React.FunctionComponent<IBlogsProps> = () => {
   const { blogs, loading, error } = useBlogs();
+  const [visible, setVisible] = useState(PAGE_SIZE);
+  const visibleBlogs = blogs.slice(0, visible);
 
   return (
     <OuterCard>
@@ -52,7 +57,7 @@ const Blogs: React.FunctionComponent<IBlogsProps> = () => {
           <div className="text-sm text-muted-foreground px-2">{error}</div>
         )}
         {!loading &&
-          blogs.map((blog, index) => (
+          visibleBlogs.map((blog, index) => (
             <InnerCard key={index}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs text-muted-foreground">
@@ -94,6 +99,18 @@ const Blogs: React.FunctionComponent<IBlogsProps> = () => {
               </a>
             </InnerCard>
           ))}
+        {!loading && blogs.length > PAGE_SIZE && (
+          <button
+            onClick={() =>
+              setVisible((v) => (v >= blogs.length ? PAGE_SIZE : blogs.length))
+            }
+            className="w-full mt-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {visible >= blogs.length
+              ? "Show less"
+              : `Show ${blogs.length - visible} more`}
+          </button>
+        )}
       </div>
     </OuterCard>
   );
