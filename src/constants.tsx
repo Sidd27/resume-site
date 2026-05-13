@@ -13,7 +13,7 @@ type ExpreinceType = {
 
 export const EXPERINCES_DATA: ExpreinceType[] = [
   {
-    image: "hypertrack.png",
+    image: "hypertrack.svg",
     company: "HyperTrack",
     title: "Lead Software Engineer (Frontend Platforms)",
     location: "Remote",
