@@ -61,7 +61,7 @@ async function fetchDevToBlogs(): Promise<Blog[]> {
 
 async function fetchMediumBlogs(): Promise<Blog[]> {
   const res = await fetch(
-    "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@siddharthpandey_77104&count=20"
+    "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@siddharthpandey_77104"
   );
   if (!res.ok) throw new Error("Medium fetch failed");
   const data = await res.json();
