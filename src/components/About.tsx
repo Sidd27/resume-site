@@ -4,11 +4,37 @@ import { CustomHeader } from "./common/typography";
 import { Mail, Square } from "lucide-react";
 import { BULLET_COLOR } from "../constants";
 import Divider from "./common/divider";
-import { GITHUB_ICON, NPM_ICON } from "./common/icons";
+import { DEVTO_ICON, GITHUB_ICON, LINKEDIN_ICON, MEDIUM_ICON, NPM_ICON } from "./common/icons";
 
-interface IAboutProps {}
+const SOCIAL_LINKS = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/siddharthpandey27",
+    icon: <LINKEDIN_ICON width={15} height={15} />,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/Sidd27",
+    icon: <GITHUB_ICON width={15} height={15} />,
+  },
+  {
+    label: "NPM",
+    href: "https://www.npmjs.com/~sidd27",
+    icon: <NPM_ICON width={15} height={15} />,
+  },
+  {
+    label: "Dev.to",
+    href: "https://dev.to/siddharth_pandey_27",
+    icon: <DEVTO_ICON width={15} height={15} />,
+  },
+  {
+    label: "Medium",
+    href: "https://medium.com/@siddharthpandey_77104",
+    icon: <MEDIUM_ICON width={15} height={15} />,
+  },
+];
 
-const About: React.FunctionComponent<IAboutProps> = () => {
+const About: React.FunctionComponent = () => {
   return (
     <OuterCard>
       <CustomHeader
@@ -17,41 +43,37 @@ const About: React.FunctionComponent<IAboutProps> = () => {
         About me
       </CustomHeader>
       <InnerCard>
-        <div className="text-muted-foreground text-sm">
+        <p className="text-muted-foreground text-sm">
           Track record of owning frontend platform modernization, performance
           engineering, and multi-team developer infrastructure at scale. Recent
           work spans AI-assisted operational systems, retrieval-based debugging
           workflows, and infrastructure-aware frontend architectures built on
           React, TypeScript, Svelte, Node.js, and AWS.
-        </div>
-        <Divider />
-        <div className="flex flex-col space-y-2">
-          <a
-            className="flex items-center text-foreground text-sm"
-            href="mailto:pandeysiddharth27@gmail.com"
-          >
-            <Mail className="mr-2" size={16} />
-            pandeysiddharth27@gmail.com
-          </a>
-          <Divider />
-          <div className="flex space-x-2">
+        </p>
+
+        <Divider className="my-3" />
+        <a
+          href="mailto:pandeysiddharth27@gmail.com"
+          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Mail size={14} className="shrink-0" />
+          pandeysiddharth27@gmail.com
+        </a>
+        <Divider className="my-3" />
+
+        <div className="grid grid-cols-2 gap-2">
+          {SOCIAL_LINKS.map(({ label, href, icon }) => (
             <a
-              className="flex items-center text-foreground text-sm"
-              href="https://www.npmjs.com/~sidd27"
+              key={label}
+              href={href}
               target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted/40 transition-all"
             >
-              <NPM_ICON className="mr-1" width={16} height={16} />
-              NPM
+              <span className="shrink-0">{icon}</span>
+              {label}
             </a>
-            <a
-              className="flex items-center text-foreground text-sm"
-              href="https://github.com/Sidd27"
-              target="_blank"
-            >
-              <GITHUB_ICON className="mr-1" width={16} height={16} />
-              GitHub
-            </a>
-          </div>
+          ))}
         </div>
       </InnerCard>
     </OuterCard>

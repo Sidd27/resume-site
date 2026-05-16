@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { formatDate } from "@/lib/utils";
 
 export type Blog = {
   title: string;
@@ -10,6 +11,27 @@ export type Blog = {
   tags: string[];
   readingTime?: number;
 };
+
+const FETCH_TIMEOUT_MS = 8000;
+
+function safeFetch(url: string): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  return fetch(url, { signal: controller.signal }).finally(() =>
+    clearTimeout(timer)
+  );
+}
+
+function safeLink(url: string): string {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === "https:" || parsed.protocol === "http:"
+      ? url
+      : "";
+  } catch {
+    return "";
+  }
+}
 
 function stripHtml(html: string): string {
   return html
@@ -23,17 +45,10 @@ function stripHtml(html: string): string {
     .trim();
 }
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
 
 async function fetchDevToBlogs(): Promise<Blog[]> {
-  const res = await fetch(
-    "https://dev.to/api/articles?username=siddharth_pandey_6ec0fc47&per_page=20"
+  const res = await safeFetch(
+    "https://dev.to/api/articles?username=siddharth_pandey_27&per_page=20"
   );
   if (!res.ok) throw new Error("Dev.to fetch failed");
   const data = await res.json();
@@ -42,14 +57,13 @@ async function fetchDevToBlogs(): Promise<Blog[]> {
       title: string;
       url: string;
       published_at: string;
-      readable_publish_date: string;
       description: string;
       tag_list: string[];
       reading_time_minutes: number;
     }) => ({
       title: a.title,
-      link: a.url,
-      displayDate: a.readable_publish_date,
+      link: safeLink(a.url),
+      displayDate: formatDate(a.published_at),
       sortDate: new Date(a.published_at).getTime(),
       description: a.description,
       source: "devto" as const,
@@ -60,7 +74,7 @@ async function fetchDevToBlogs(): Promise<Blog[]> {
 }
 
 async function fetchMediumBlogs(): Promise<Blog[]> {
-  const res = await fetch(
+  const res = await safeFetch(
     "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@siddharthpandey_77104"
   );
   if (!res.ok) throw new Error("Medium fetch failed");
@@ -77,7 +91,7 @@ async function fetchMediumBlogs(): Promise<Blog[]> {
       const plain = stripHtml(item.description);
       return {
         title: item.title,
-        link: item.link,
+        link: safeLink(item.link),
         displayDate: formatDate(item.pubDate),
         sortDate: new Date(item.pubDate).getTime(),
         description: plain.length > 180 ? plain.slice(0, 180) + "…" : plain,

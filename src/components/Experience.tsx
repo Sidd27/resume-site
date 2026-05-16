@@ -13,7 +13,7 @@ const Expereince: React.FunctionComponent<IExpereinceProps> = () => {
       <CustomHeader
         icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
       >
-        Expereince
+        Experience
       </CustomHeader>
       <div className="space-y-2">
         {EXPERINCES_DATA.map((expreince, index) => (

@@ -5,10 +5,12 @@ import Education from "./components/Education";
 import Expereince from "./components/Experience";
 import Information from "./components/Information";
 import ProfileDetails from "./components/ProfileDetails";
+import Projects from "./components/Projects";
+import ThemeToggle from "./components/ThemeToggle";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { ThemeProvider } from "./theme-provider";
 
-const TABS = ["experience", "education", "blog"] as const;
+const TABS = ["experience", "projects", "education", "blog"] as const;
 type Tab = (typeof TABS)[number];
 
 function getTabFromHash(): Tab {
@@ -32,21 +34,26 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-      <div className="md:flex max-w-5xl mx-auto md:p-6 p-2">
-        <div className="flex flex-col gap-4 md:max-w-80">
+      <ThemeToggle />
+      <main className="md:flex max-w-5xl mx-auto md:p-6 p-2">
+        <aside className="flex flex-col gap-4 md:max-w-80">
           <ProfileDetails />
           <About />
           <Information />
-        </div>
+        </aside>
         <div className="md:ml-4 w-full mt-4 md:mt-0">
           <Tabs value={activeTab} onValueChange={handleTabChange}>
-            <TabsList className="grid w-full grid-cols-3 bg-white dark:bg-gray-800 sticky top-0 z-10 md:static shadow-lg md:shadow-none">
+            <TabsList className="grid w-full grid-cols-4 bg-white dark:bg-gray-800 sticky top-0 z-10 md:static shadow-lg md:shadow-none">
               <TabsTrigger value="experience">Experience</TabsTrigger>
+              <TabsTrigger value="projects">Projects</TabsTrigger>
               <TabsTrigger value="education">Education</TabsTrigger>
               <TabsTrigger value="blog">Blogs</TabsTrigger>
             </TabsList>
             <TabsContent value="experience">
               <Expereince />
+            </TabsContent>
+            <TabsContent value="projects">
+              <Projects />
             </TabsContent>
             <TabsContent value="education">
               <Education />
@@ -56,7 +63,7 @@ function App() {
             </TabsContent>
           </Tabs>
         </div>
-      </div>
+      </main>
     </ThemeProvider>
   );
 }

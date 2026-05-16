@@ -15,7 +15,7 @@ export const EXPERINCES_DATA: ExpreinceType[] = [
   {
     image: "hypertrack.svg",
     company: "HyperTrack",
-    title: "Lead Software Engineer (Frontend Platforms)",
+    title: "Lead Software Engineer",
     location: "Remote",
     period: "Sep 2022 - Present",
     type: "Full-time",
@@ -57,7 +57,7 @@ export const EXPERINCES_DATA: ExpreinceType[] = [
     ],
   },
   {
-    image: "lendingkart.png",
+    image: "lendingkart.webp",
     company: "LendingKart",
     title: "Software Development Engineer - III",
     location: "Bangalore, India",
@@ -77,7 +77,7 @@ export const EXPERINCES_DATA: ExpreinceType[] = [
     ],
   },
   {
-    image: "coviam.jpeg",
+    image: "coviam.webp",
     company: "Coviam Technologies",
     title: "Senior Software Developer",
     location: "Bangalore, India",
@@ -108,8 +108,6 @@ export const EXPERINCES_DATA: ExpreinceType[] = [
       "Ionic",
       "Cordova",
       "jQuery",
-      "PHP (Zend)",
-      "MySQL",
       "JavaScript",
       "CSS3",
     ],
@@ -128,15 +126,15 @@ type EducationType = {
 export const EDUCATION_DATA: EducationType[] = [
   {
     image: "bit.jpg",
-    title: "Bachelor’s of Engineering",
+    title: "Bachelor of Engineering - Information Technology",
     location: "Bhilai-Durg, Chhattisgarh, India",
     period: "2008 - 2012",
     detail:
-      'During my college days, I developed an academic project titled "E-Panorama" using PHP, HTML, JavaScript, CSS, and MySQL. In addition to my academic pursuits, I actively participated in organizing college fests, robotics competitions, and gaming competitions, including Counter-Strike tournaments. These experiences helped enhance my technical and leadership skills while fostering a sense of teamwork and event management.',
+      "Graduated in Information Technology. Built an academic project E-Panorama - a web-based virtual tour application using HTML, JavaScript, CSS, and MySQL. Participated in organizing college fests, robotics competitions, and technical events.",
     school: "BIT, Durg",
   },
   {
-    image: "bharatmata.png",
+    image: "bharatmata.webp",
     title: "Primary and Higher Secondary Education",
     location: "Bilaspur, Chhattisgarh, India",
     period: "1996 - 2008",
@@ -145,3 +143,13 @@ export const EDUCATION_DATA: EducationType[] = [
     school: "Bharat Mata English Medium School",
   },
 ];
+
+export type ManualProject = {
+  name: string;
+  description: string;
+  url: string;
+  techs: string[];
+};
+
+// Non-npm projects only — npm packages are fetched dynamically via useNpmPackages
+export const PROJECTS_DATA: ManualProject[] = [];

@@ -30,6 +30,9 @@ const DetailCard: React.FunctionComponent<IDetailCardProps> = ({
     <InnerCard className="flex">
       <img
         src={image}
+        alt={company ?? ""}
+        width={56}
+        height={56}
         className="border-2 bg-white border-white shadow object-center object-contain w-14 h-14 rounded-full align-middle"
       />
       <div className="ml-4 relative">
