@@ -1,30 +1,33 @@
-# React + TypeScript + Vite
+# resume-site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal resume and portfolio site for [Siddharth Pandey](https://sidd27.github.io/resume-site/).
 
-Currently, two official plugins are available:
+**Live:** https://sidd27.github.io/resume-site/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## Expanding the ESLint configuration
+- React 19 + TypeScript
+- Vite 6
+- Tailwind CSS + shadcn/ui
+- Radix UI primitives
+- Lucide icons
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- Experience, Projects, Education, and Blogs tabs
+- npm packages fetched live with published date, updated date, and monthly downloads
+- Blog posts fetched live from Dev.to and Medium
+- Categorised skills sidebar (AI/LLM, Frontend, Backend, Cloud/IaC, Architecture)
+- Light / dark mode
+- Fully responsive
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Local development
+
+```bash
+pnpm install
+pnpm dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Deploy
+
+Pushes to `main` trigger the GitHub Actions workflow which builds the site and deploys it to GitHub Pages via `actions/deploy-pages`.
