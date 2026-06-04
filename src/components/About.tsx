@@ -40,18 +40,9 @@ const About: React.FunctionComponent = () => {
       <CustomHeader
         icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
       >
-        About me
+        Connect
       </CustomHeader>
       <InnerCard>
-        <p className="text-muted-foreground text-sm">
-          Track record of owning frontend platform modernization, performance
-          engineering, and multi-team developer infrastructure at scale. Recent
-          work spans AI-assisted operational systems, retrieval-based debugging
-          workflows, and infrastructure-aware frontend architectures built on
-          React, TypeScript, Svelte, Node.js, and AWS.
-        </p>
-
-        <Divider className="my-3" />
         <a
           href="mailto:pandeysiddharth27@gmail.com"
           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -61,17 +52,17 @@ const About: React.FunctionComponent = () => {
         </a>
         <Divider className="my-3" />
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="flex gap-2">
           {SOCIAL_LINKS.map(({ label, href, icon }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted/40 transition-all"
+              title={label}
+              className="flex-1 flex items-center justify-center h-9 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted/40 transition-all"
             >
-              <span className="shrink-0">{icon}</span>
-              {label}
+              {icon}
             </a>
           ))}
         </div>

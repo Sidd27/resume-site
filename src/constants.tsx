@@ -153,3 +153,13 @@ export type ManualProject = {
 
 // Non-npm projects only — npm packages are fetched dynamically via useNpmPackages
 export const PROJECTS_DATA: ManualProject[] = [];
+
+export const WRITING_TOPICS = [
+  "Agentic AI",
+  "MCP",
+  "RAG",
+  "LLM limitations",
+  "Micro Frontends",
+  "React / Next.js",
+  "Frontend Performance",
+];

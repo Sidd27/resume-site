@@ -5,9 +5,7 @@ import { GraduationCap, Square } from "lucide-react";
 import DetailCard from "./common/detailCard";
 import { BULLET_COLOR, EDUCATION_DATA } from "@/constants";
 
-interface IEducationProps {}
-
-const Education: React.FunctionComponent<IEducationProps> = () => {
+const Education: React.FC = () => {
   return (
     <OuterCard>
       <CustomHeader

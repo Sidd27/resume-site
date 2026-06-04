@@ -3,12 +3,10 @@ import { useState } from "react";
 import { InnerCard, OuterCard } from "./common/Cards";
 import { CustomHeader } from "./common/typography";
 import { Square } from "lucide-react";
-import { BULLET_COLOR } from "@/constants";
+import { BULLET_COLOR, WRITING_TOPICS } from "@/constants";
 import { useBlogs } from "@/hooks/useBlogs";
 
 const PAGE_SIZE = 5;
-
-interface IBlogsProps {}
 
 const SourceBadge: React.FC<{ source: "devto" | "medium" }> = ({ source }) => (
   <span
@@ -33,7 +31,7 @@ const BlogSkeleton: React.FC = () => (
   </InnerCard>
 );
 
-const Blogs: React.FunctionComponent<IBlogsProps> = () => {
+const Blogs: React.FC = () => {
   const { blogs, loading, error } = useBlogs();
   const [visible, setVisible] = useState(PAGE_SIZE);
   const visibleBlogs = blogs.slice(0, visible);
@@ -46,6 +44,19 @@ const Blogs: React.FunctionComponent<IBlogsProps> = () => {
         Blogs
       </CustomHeader>
       <div className="space-y-2">
+        <div className="flex items-start gap-2 px-0.5 flex-wrap">
+          <span className="text-xs text-muted-foreground shrink-0 pt-0.5">Writes about:</span>
+          <div className="flex flex-wrap gap-1">
+            {WRITING_TOPICS.map((topic) => (
+              <span
+                key={topic}
+                className="text-xs px-2 py-0.5 rounded-full border border-cyan-300 text-cyan-700 dark:border-cyan-700 dark:text-cyan-400"
+              >
+                {topic}
+              </span>
+            ))}
+          </div>
+        </div>
         {loading && (
           <>
             <BlogSkeleton />

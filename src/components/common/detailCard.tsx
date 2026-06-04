@@ -1,5 +1,6 @@
 import { Calendar, MapPin } from "lucide-react";
 import * as React from "react";
+import { useState } from "react";
 import Badge from "./badge";
 import { InnerCard } from "./Cards";
 
@@ -26,6 +27,8 @@ const DetailCard: React.FunctionComponent<IDetailCardProps> = ({
   technologies,
   primaryIcon,
 }) => {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <InnerCard className="flex">
       <img
@@ -35,7 +38,7 @@ const DetailCard: React.FunctionComponent<IDetailCardProps> = ({
         height={56}
         className="border-2 bg-white border-white shadow object-center object-contain w-14 h-14 rounded-full align-middle"
       />
-      <div className="ml-4 relative">
+      <div className="ml-4 relative w-full">
         <div className="text-foreground font-semibold">{title}</div>
         <div className="flex gap-2 text-muted-foreground mt-2 md:gap-4 flex-wrap">
           <div className="text-xs flex space-x-1 items-center">
@@ -51,7 +54,19 @@ const DetailCard: React.FunctionComponent<IDetailCardProps> = ({
             <span>{dateRange}</span>
           </div>
         </div>
-        <p className="mt-4 text-muted-foreground">{description}</p>
+        {description && (
+          <>
+            <p className={`mt-4 text-muted-foreground text-sm ${expanded ? "" : "line-clamp-3"}`}>
+              {description}
+            </p>
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="mt-1 text-xs text-cyan-600 dark:text-cyan-400 hover:underline"
+            >
+              {expanded ? "Show less" : "Show more"}
+            </button>
+          </>
+        )}
         {badge && (
           <div className="absolute top-0 right-0 hidden md:block">
             <Badge>{badge}</Badge>

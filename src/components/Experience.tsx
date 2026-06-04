@@ -5,9 +5,7 @@ import { BriefcaseBusiness, Square } from "lucide-react";
 import { BULLET_COLOR, EXPERINCES_DATA } from "@/constants";
 import DetailCard from "./common/detailCard";
 
-interface IExpereinceProps {}
-
-const Expereince: React.FunctionComponent<IExpereinceProps> = () => {
+const Expereince: React.FC = () => {
   return (
     <OuterCard>
       <CustomHeader

@@ -6,11 +6,12 @@ export type NpmPackage = {
   description: string;
   version: string;
   date: string;
+  createdDate: string;
   sortDate: number;
+  monthlyDownloads: number;
   keywords: string[];
   npmUrl: string;
   repositoryUrl?: string;
-  homepageUrl?: string;
 };
 
 const NPM_USERNAME = "sidd27";
@@ -19,9 +20,7 @@ const FETCH_TIMEOUT_MS = 8000;
 function safeFetch(url: string): Promise<Response> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  return fetch(url, { signal: controller.signal }).finally(() =>
-    clearTimeout(timer)
-  );
+  return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timer));
 }
 
 function parseRepoUrl(repository: unknown): string | undefined {
@@ -38,7 +37,6 @@ function parseRepoUrl(repository: unknown): string | undefined {
   return undefined;
 }
 
-
 export function useNpmPackages() {
   const [packages, setPackages] = useState<NpmPackage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,25 +45,21 @@ export function useNpmPackages() {
   useEffect(() => {
     async function fetchPackages() {
       try {
-        const res = await safeFetch(
+        const searchRes = await safeFetch(
           `https://registry.npmjs.org/-/v1/search?text=maintainer:${NPM_USERNAME}&size=50`
         );
-        if (!res.ok) throw new Error("npm fetch failed");
-        const data = await res.json();
+        if (!searchRes.ok) throw new Error("npm fetch failed");
+        const searchData = await searchRes.json();
 
-        const pkgs: NpmPackage[] = (
-          data.objects as Array<{
+        const rawPkgs = (
+          searchData.objects as Array<{
             package: {
               name: string;
               description?: string;
               version: string;
               date: string;
               keywords?: string[];
-              links: {
-                npm: string;
-                homepage?: string;
-                repository?: string;
-              };
+              links: { npm: string; repository?: string };
             };
           }>
         ).map(({ package: pkg }) => ({
@@ -73,12 +67,50 @@ export function useNpmPackages() {
           description: pkg.description ?? "",
           version: pkg.version,
           date: formatDate(pkg.date),
+          createdDate: "",
           sortDate: new Date(pkg.date).getTime(),
+          monthlyDownloads: 0,
           keywords: pkg.keywords ?? [],
           npmUrl: pkg.links.npm,
           repositoryUrl: parseRepoUrl(pkg.links.repository),
-          homepageUrl: pkg.links.homepage,
         }));
+
+        const names = rawPkgs.map((p) => p.name);
+
+        // Parallel: bulk downloads API + per-package registry fetch for created date
+        const [downloadsRes, ...registryResponses] = await Promise.all([
+          safeFetch(`https://api.npmjs.org/downloads/point/last-month/${names.join(",")}`),
+          ...names.map((n) => safeFetch(`https://registry.npmjs.org/${encodeURIComponent(n)}`)),
+        ]);
+
+        const downloadsJson = downloadsRes.ok ? await downloadsRes.json() : {};
+        const registryJsons = await Promise.all(
+          registryResponses.map((r) =>
+            r.ok ? r.json().catch(() => null) : Promise.resolve(null)
+          )
+        );
+
+        // Downloads API returns flat object for 1 package, keyed by name for multiple
+        const downloadsMap: Record<string, number> = {};
+        if (names.length === 1) {
+          downloadsMap[names[0]] = (downloadsJson as { downloads?: number }).downloads ?? 0;
+        } else {
+          for (const [name, data] of Object.entries(
+            downloadsJson as Record<string, { downloads?: number }>
+          )) {
+            downloadsMap[name] = data?.downloads ?? 0;
+          }
+        }
+
+        const pkgs: NpmPackage[] = rawPkgs.map((pkg, i) => {
+          const registry = registryJsons[i] as { time?: Record<string, string> } | null;
+          const created = registry?.time?.created;
+          return {
+            ...pkg,
+            createdDate: created ? formatDate(created) : pkg.date,
+            monthlyDownloads: downloadsMap[pkg.name] ?? 0,
+          };
+        });
 
         pkgs.sort((a, b) => b.sortDate - a.sortDate);
         setPackages(pkgs);

@@ -4,7 +4,7 @@ import { CustomHeader } from "./common/typography";
 import { Square, ExternalLink, Calendar } from "lucide-react";
 import { BULLET_COLOR, PROJECTS_DATA } from "@/constants";
 import Badge from "./common/badge";
-import { GITHUB_ICON, NPM_ICON } from "./common/icons";
+import { GITHUB_ICON } from "./common/icons";
 import { useNpmPackages } from "@/hooks/useNpmPackages";
 
 const PackageSkeleton: React.FC = () => (
@@ -63,37 +63,48 @@ const Projects: React.FC = () => {
         )}
         {!loading && packages.map((pkg, i) => (
           <InnerCard key={i}>
-            <div className="flex items-start gap-2">
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
+            {/* Header */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <a
+                href={pkg.repositoryUrl ?? pkg.npmUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:underline"
+              >
+                <GITHUB_ICON width={15} height={15} className="shrink-0" />
+                <span className="text-foreground font-semibold">{pkg.name}</span>
+              </a>
+              <span className="text-xs text-muted-foreground font-mono">v{pkg.version}</span>
+            </div>
+
+            {/* Meta: dates + npm downloads */}
+            <div className="flex items-center gap-2 mt-1 flex-wrap">
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                <Calendar size={10} className="shrink-0" />
+                <span>{pkg.createdDate}</span>
+              </div>
+              {pkg.createdDate !== pkg.date && (
+                <>
+                  <span className="text-muted-foreground/40 text-xs">→</span>
+                  <span className="text-xs text-muted-foreground">{pkg.date}</span>
+                </>
+              )}
+              {pkg.monthlyDownloads > 0 && (
+                <>
+                  <span className="text-muted-foreground/40 text-xs">·</span>
                   <a
                     href={pkg.npmUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 hover:underline"
+                    className="flex items-center gap-1 text-xs font-medium text-cyan-600 dark:text-cyan-400 hover:underline"
                   >
-                    <NPM_ICON width={16} height={16} className="shrink-0" />
-                    <span className="text-foreground font-semibold">{pkg.name}</span>
+                    <span className="font-bold">npm</span>
+                    <span>{pkg.monthlyDownloads.toLocaleString()}/mo</span>
                   </a>
-                  <span className="text-xs text-muted-foreground font-mono">v{pkg.version}</span>
-                  {pkg.repositoryUrl && (
-                    <a
-                      href={pkg.repositoryUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                      title="Repository"
-                    >
-                      <GITHUB_ICON width={13} height={13} />
-                    </a>
-                  )}
-                </div>
-                <div className="flex items-center gap-1 mt-0.5 text-xs text-muted-foreground">
-                  <Calendar size={11} />
-                  <span>{pkg.date}</span>
-                </div>
-              </div>
+                </>
+              )}
             </div>
+
             {pkg.description && (
               <p className="mt-2 text-muted-foreground text-sm">{pkg.description}</p>
             )}

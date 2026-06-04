@@ -1,11 +1,8 @@
 import * as React from "react";
 import { Download } from "lucide-react";
 import { InnerCard, OuterCard } from "./common/Cards";
-import Badge from "./common/badge";
-
-interface IProfileDetailsProps {}
-
-const ProfileDetails: React.FunctionComponent<IProfileDetailsProps> = () => {
+import Divider from "./common/divider";
+const ProfileDetails: React.FC = () => {
   return (
     <div className="rounded-lg bg-white flex flex-col dark:bg-slate-900">
       <OuterCard>
@@ -20,37 +17,23 @@ const ProfileDetails: React.FunctionComponent<IProfileDetailsProps> = () => {
           />
           <div>
             <div className="text-md font-medium">Siddharth Pandey</div>
-            <div className="text-sm text-muted-foreground">Staff Frontend Platform Engineer · India</div>
+            <div className="text-sm text-muted-foreground mt-0.5">Lead Full-Stack Engineer</div>
+            <div className="text-sm text-muted-foreground">Applied AI Systems</div>
           </div>
         </div>
         <InnerCard>
-          <div className="text-muted-foreground text-sm">
-            Building frontend platforms at scale — microfrontends, performance
-            engineering, and real-time systems across logistics, fintech, and
-            ecommerce.
-          </div>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            Full-Stack Software Engineer with 13+ years building and leading production systems across logistics, fintech, and e-commerce — from React and Node.js to cloud infrastructure and AI-powered workflows. Shipped RAG-based investigation pipelines, published MCP-based tooling, and automated deployments with Terraform and AWS CDK. Engineering lead who grows teams through hiring, mentoring, and establishing platform standards.
+          </p>
+          <Divider className="my-3" />
           <a
             href="/siddharth-pandey-resume.pdf"
             download="Siddharth-Pandey-Resume.pdf"
-            className="mt-3 flex items-center justify-center gap-2 w-full rounded-md bg-cyan-700 hover:bg-cyan-800 text-white text-sm font-medium py-1.5 transition-colors"
+            className="flex items-center justify-center gap-2 w-full rounded-md bg-cyan-700 hover:bg-cyan-800 text-white text-sm font-medium py-1.5 transition-colors"
           >
             <Download size={14} />
             Download Resume
           </a>
-          <div className="flex mt-3 flex-wrap gap-1">
-            <Badge>React</Badge>
-            <Badge>TypeScript</Badge>
-            <Badge>Svelte</Badge>
-            <Badge>Angular</Badge>
-            <Badge>Node.js</Badge>
-            <Badge>GraphQL</Badge>
-            <Badge>WebSockets</Badge>
-            <Badge>AWS</Badge>
-            <Badge>Microfrontends</Badge>
-            <Badge>Tailwind</Badge>
-            <Badge>MongoDB</Badge>
-            <Badge>PostgreSQL</Badge>
-          </div>
         </InnerCard>
       </OuterCard>
     </div>

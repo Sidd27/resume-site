@@ -6,6 +6,8 @@ import Expereince from "./components/Experience";
 import Information from "./components/Information";
 import ProfileDetails from "./components/ProfileDetails";
 import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import WritesAbout from "./components/WritesAbout";
 import ThemeToggle from "./components/ThemeToggle";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { ThemeProvider } from "./theme-provider";
@@ -38,6 +40,8 @@ function App() {
       <main className="md:flex max-w-5xl mx-auto md:p-6 p-2">
         <aside className="flex flex-col gap-4 md:max-w-80">
           <ProfileDetails />
+          <Skills />
+          <WritesAbout />
           <About />
           <Information />
         </aside>
