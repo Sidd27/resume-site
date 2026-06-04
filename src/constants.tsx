@@ -20,7 +20,7 @@ export const EXPERINCES_DATA: ExpreinceType[] = [
     period: "Sep 2022 - Present",
     type: "Full-time",
     detail:
-      "Own frontend architecture for real-time logistics platform spanning customer dashboards and internal operational systems. Re-architected frontend into a microfrontend-based system improving deployment isolation and platform scalability. Improved core application performance (Lighthouse ~23 → ~75) by restructuring bundle boundaries and optimizing runtime hydration paths. Reduced real-time tracking page latency (~3s → ~500ms) by isolating map-heavy workflows into lightweight Svelte-based runtime modules. Led migration from MapTiler to AWS Location Services, reducing platform cost by ~40%. Designed AI-assisted operational investigation layer combining API aggregation, caching, and retrieval-based context generation for order-level debugging workflows.",
+      "Own frontend architecture for real-time logistics platform spanning customer dashboards and internal operational systems. Re-architected frontend into a microfrontend-based system improving deployment isolation and platform scalability. Improved core application performance (Lighthouse ~23 → ~75) by restructuring bundle boundaries and optimizing runtime hydration paths. Reduced real-time tracking page latency (~3s → ~500ms) by isolating map-heavy workflows into lightweight Svelte-based runtime modules. Led migration from MapTiler to AWS Location Services, reducing platform cost by ~40%. Built multimodal AI investigation agents using OpenAI and Anthropic SDKs (TypeScript) on AWS Lambda — orchestrating operational APIs, detecting anomalies, and surfacing natural language insights to support teams.",
     techs: [
       "React",
       "TypeScript",
