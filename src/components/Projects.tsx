@@ -1,8 +1,7 @@
 import * as React from "react";
 import { OuterCard, InnerCard } from "./common/Cards";
-import { CustomHeader } from "./common/typography";
-import { Square, ExternalLink, Calendar } from "lucide-react";
-import { BULLET_COLOR, PROJECTS_DATA } from "@/constants";
+import { ExternalLink, Calendar } from "lucide-react";
+import { PROJECTS_DATA } from "@/constants";
 import Badge from "./common/badge";
 import { GITHUB_ICON } from "./common/icons";
 import { useNpmPackages } from "@/hooks/useNpmPackages";
@@ -22,13 +21,7 @@ const Projects: React.FC = () => {
 
   return (
     <OuterCard>
-      <CustomHeader
-        icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
-      >
-        Projects &amp; Packages
-      </CustomHeader>
-
-      <div className="space-y-2">
+      <div className="space-y-2 pt-1">
         {/* Manual non-npm projects */}
         {PROJECTS_DATA.map((project, i) => (
           <InnerCard key={i}>

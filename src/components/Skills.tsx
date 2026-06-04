@@ -1,8 +1,7 @@
 import * as React from "react";
 import { OuterCard, InnerCard } from "./common/Cards";
 import { CustomHeader } from "./common/typography";
-import { Square, Sparkles, Monitor, Server, Cloud, Layers } from "lucide-react";
-import { BULLET_COLOR } from "../constants";
+import { Sparkles, Monitor, Server, Cloud, Layers } from "lucide-react";
 
 const SKILL_CATEGORIES = [
   {
@@ -40,11 +39,7 @@ const SKILL_CATEGORIES = [
 const Skills: React.FC = () => {
   return (
     <OuterCard>
-      <CustomHeader
-        icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
-      >
-        Skills
-      </CustomHeader>
+      <CustomHeader>Skills</CustomHeader>
       <InnerCard className="space-y-3">
         {SKILL_CATEGORIES.map(({ label, icon: Icon, colorClass, skills }) => (
           <div key={label}>

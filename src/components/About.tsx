@@ -1,8 +1,7 @@
 import * as React from "react";
 import { InnerCard, OuterCard } from "./common/Cards";
 import { CustomHeader } from "./common/typography";
-import { Mail, Square } from "lucide-react";
-import { BULLET_COLOR } from "../constants";
+import { Mail } from "lucide-react";
 import Divider from "./common/divider";
 import { DEVTO_ICON, GITHUB_ICON, LINKEDIN_ICON, MEDIUM_ICON, NPM_ICON } from "./common/icons";
 
@@ -37,11 +36,7 @@ const SOCIAL_LINKS = [
 const About: React.FunctionComponent = () => {
   return (
     <OuterCard>
-      <CustomHeader
-        icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
-      >
-        Connect
-      </CustomHeader>
+      <CustomHeader>Connect</CustomHeader>
       <InnerCard>
         <a
           href="mailto:pandeysiddharth27@gmail.com"

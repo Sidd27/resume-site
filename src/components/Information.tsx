@@ -1,8 +1,7 @@
 import * as React from "react";
 import { InnerCard, OuterCard } from "./common/Cards";
 import { CustomHeader } from "./common/typography";
-import { Square, MapPin, Briefcase, Clock } from "lucide-react";
-import { BULLET_COLOR } from "../constants";
+import { MapPin, Briefcase, Clock } from "lucide-react";
 import Divider from "./common/divider";
 
 const FACTS = [
@@ -14,11 +13,7 @@ const FACTS = [
 const Information: React.FC = () => {
   return (
     <OuterCard>
-      <CustomHeader
-        icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
-      >
-        Details
-      </CustomHeader>
+      <CustomHeader>Details</CustomHeader>
       <InnerCard className="space-y-2.5">
         {FACTS.map(({ icon: Icon, label, value }) => (
           <div key={label} className="flex items-center justify-between">

@@ -1,5 +1,3 @@
-export const BULLET_COLOR = "#00b4d8";
-
 type ExpreinceType = {
   image: string;
   company: string;

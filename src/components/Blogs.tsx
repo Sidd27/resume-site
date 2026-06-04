@@ -1,9 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { InnerCard, OuterCard } from "./common/Cards";
-import { CustomHeader } from "./common/typography";
-import { Square } from "lucide-react";
-import { BULLET_COLOR, WRITING_TOPICS } from "@/constants";
+import { WRITING_TOPICS } from "@/constants";
 import { useBlogs } from "@/hooks/useBlogs";
 
 const PAGE_SIZE = 5;
@@ -38,12 +36,7 @@ const Blogs: React.FC = () => {
 
   return (
     <OuterCard>
-      <CustomHeader
-        icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
-      >
-        Blogs
-      </CustomHeader>
-      <div className="space-y-2">
+      <div className="space-y-2 pt-1">
         <div className="flex items-start gap-2 px-0.5 flex-wrap">
           <span className="text-xs text-muted-foreground shrink-0 pt-0.5">Writes about:</span>
           <div className="flex flex-wrap gap-1">

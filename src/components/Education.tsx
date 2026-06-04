@@ -1,19 +1,13 @@
 import * as React from "react";
 import { OuterCard } from "./common/Cards";
-import { CustomHeader } from "./common/typography";
-import { GraduationCap, Square } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import DetailCard from "./common/detailCard";
-import { BULLET_COLOR, EDUCATION_DATA } from "@/constants";
+import { EDUCATION_DATA } from "@/constants";
 
 const Education: React.FC = () => {
   return (
     <OuterCard>
-      <CustomHeader
-        icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
-      >
-        Education
-      </CustomHeader>
-      <div className="space-y-2">
+      <div className="space-y-2 pt-1">
         {EDUCATION_DATA.map((edu, index) => (
           <DetailCard
             key={index}

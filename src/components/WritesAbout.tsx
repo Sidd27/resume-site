@@ -1,19 +1,15 @@
 import * as React from "react";
 import { OuterCard, InnerCard } from "./common/Cards";
 import { CustomHeader } from "./common/typography";
-import { Square, PenLine } from "lucide-react";
-import { BULLET_COLOR, WRITING_TOPICS } from "../constants";
+import { PenLine } from "lucide-react";
+import { WRITING_TOPICS } from "../constants";
 
 const WritesAbout: React.FC = () => {
   return (
     <OuterCard>
-      <CustomHeader
-        icon={<Square fill={BULLET_COLOR} color={BULLET_COLOR} size={10} />}
-      >
-        <span className="flex items-center gap-1.5">
-          <PenLine size={13} />
-          Writes about
-        </span>
+      <CustomHeader>
+        <PenLine size={13} />
+        Writes about
       </CustomHeader>
       <InnerCard>
         <div className="flex flex-wrap gap-1.5">
