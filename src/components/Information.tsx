@@ -7,7 +7,7 @@ import Divider from "./common/divider";
 const FACTS = [
   { icon: MapPin,    label: "Location",     value: "Bengaluru, Karnataka" },
   { icon: Briefcase, label: "Experience",   value: "13+ Years" },
-  { icon: Clock,     label: "Available",    value: "in 15 Days" },
+  { icon: Clock,     label: "Available",    value: "Immediately" },
 ] as const;
 
 const Information: React.FC = () => {
