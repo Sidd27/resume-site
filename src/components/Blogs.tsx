@@ -38,9 +38,10 @@ const Blogs: React.FC = () => {
                 rel="noopener noreferrer"
                 className="group grid gap-x-8 gap-y-2 md:grid-cols-[9.5rem_1fr]"
               >
-                <p className="font-mono text-[11px] leading-5 text-muted-foreground">
-                  {blog.displayDate}
-                  <span className="mt-1 block">
+                <p className="flex flex-wrap items-baseline gap-x-2 font-mono text-[11px] leading-5 text-muted-foreground md:block">
+                  <span>{blog.displayDate}</span>
+                  <span className="text-border md:hidden">·</span>
+                  <span className="md:mt-1 md:block">
                     {blog.source === "devto" ? "Dev.to" : "Medium"}
                     {blog.readingTime && ` · ${blog.readingTime} min`}
                   </span>

@@ -8,9 +8,10 @@ const Education: React.FC = () => (
         key={edu.school}
         className="grid gap-x-8 gap-y-3 py-8 md:grid-cols-[9.5rem_1fr]"
       >
-        <p className="font-mono text-[11px] leading-5 text-foreground">
-          {edu.period}
-          <span className="mt-1 block text-muted-foreground">
+        <p className="flex flex-wrap items-baseline gap-x-2 font-mono text-[11px] leading-5 md:block">
+          <span className="text-foreground">{edu.period}</span>
+          <span className="text-border md:hidden">·</span>
+          <span className="text-muted-foreground md:mt-1 md:block">
             {edu.location}
           </span>
         </p>
