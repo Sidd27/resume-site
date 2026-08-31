@@ -1,117 +1,109 @@
 import * as React from "react";
-import { OuterCard, InnerCard } from "./common/Cards";
-import { ExternalLink, Calendar } from "lucide-react";
-import { PROJECTS_DATA } from "@/constants";
-import Badge from "./common/badge";
-import { GITHUB_ICON } from "./common/icons";
+import { ExternalLink } from "lucide-react";
+import { PROJECTS } from "@/data";
 import { useNpmPackages } from "@/hooks/useNpmPackages";
 
-const PackageSkeleton: React.FC = () => (
-  <InnerCard>
-    <div className="animate-pulse space-y-2">
-      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/4" />
-      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
-      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-full" />
-    </div>
-  </InnerCard>
+const RowSkeleton: React.FC = () => (
+  <div className="animate-pulse space-y-2 py-6">
+    <div className="h-4 w-1/3 rounded bg-muted" />
+    <div className="h-3 w-2/3 rounded bg-muted" />
+  </div>
 );
 
 const Projects: React.FC = () => {
   const { packages, loading, error } = useNpmPackages();
 
   return (
-    <OuterCard>
-      <div className="space-y-2 pt-1">
-        {/* Manual non-npm projects */}
-        {PROJECTS_DATA.map((project, i) => (
-          <InnerCard key={i}>
-            <div className="flex items-start justify-between gap-2">
-              <span className="text-foreground font-semibold">{project.name}</span>
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
-              >
-                <ExternalLink size={14} />
-              </a>
-            </div>
-            <p className="mt-2 text-muted-foreground text-sm">{project.description}</p>
-            <div className="mt-2 flex flex-wrap gap-1">
-              {project.techs.map((t, j) => <Badge key={j}>{t}</Badge>)}
-            </div>
-          </InnerCard>
-        ))}
+    <div className="divide-y divide-border border-t border-border">
+      {PROJECTS.map((project) => (
+        <article
+          key={project.name}
+          className="grid gap-x-8 gap-y-3 py-8 md:grid-cols-[9.5rem_1fr]"
+        >
+          <p className="font-mono text-[11px] text-muted-foreground">Project</p>
+          <div>
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 font-display text-lg font-semibold tracking-[-0.01em] text-foreground"
+            >
+              <span className="group-hover:underline">{project.name}</span>
+              <ExternalLink size={13} className="text-muted-foreground" />
+            </a>
+            <p className="mt-1 hidden break-all font-mono text-[9px] text-muted-foreground print:block">
+              {project.url}
+            </p>
+            <p className="mt-2 max-w-[62ch] text-[15px] leading-[1.65] text-muted-foreground">
+              {project.description}
+            </p>
+            <p className="mt-3 font-mono text-[11px] text-muted-foreground">
+              {project.techs.join(" · ")}
+            </p>
+          </div>
+        </article>
+      ))}
 
-        {/* npm packages */}
-        {loading && (
-          <>
-            <PackageSkeleton />
-            <PackageSkeleton />
-            <PackageSkeleton />
-          </>
-        )}
-        {error && (
-          <div className="text-sm text-muted-foreground px-2">{error}</div>
-        )}
-        {!loading && packages.map((pkg, i) => (
-          <InnerCard key={i}>
-            {/* Header */}
-            <div className="flex items-center gap-2 flex-wrap">
+      {loading && (
+        <>
+          <RowSkeleton />
+          <RowSkeleton />
+          <RowSkeleton />
+        </>
+      )}
+      {error && <p className="py-6 text-sm text-muted-foreground">{error}</p>}
+
+      {!loading &&
+        packages.map((pkg) => (
+          <article
+            key={pkg.name}
+            className="grid gap-x-8 gap-y-3 py-8 md:grid-cols-[9.5rem_1fr]"
+          >
+            <div className="font-mono text-[11px] leading-5">
+              {pkg.monthlyDownloads > 0 ? (
+                <a
+                  href={pkg.npmUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="metric text-[11px] underline-offset-4 hover:underline"
+                >
+                  {pkg.monthlyDownloads.toLocaleString()} /mo
+                </a>
+              ) : (
+                <span className="text-muted-foreground">npm</span>
+              )}
+              <span className="mt-1 block text-muted-foreground">
+                v{pkg.version}
+              </span>
+            </div>
+
+            <div className="min-w-0">
               <a
                 href={pkg.repositoryUrl ?? pkg.npmUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 hover:underline"
+                className="group flex items-center gap-2 font-display text-lg font-semibold tracking-[-0.01em] text-foreground"
               >
-                <GITHUB_ICON width={15} height={15} className="shrink-0" />
-                <span className="text-foreground font-semibold">{pkg.name}</span>
+                <span className="group-hover:underline">{pkg.name}</span>
+                <ExternalLink size={13} className="text-muted-foreground" />
               </a>
-              <span className="text-xs text-muted-foreground font-mono">v{pkg.version}</span>
-            </div>
-
-            {/* Meta: dates + npm downloads */}
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                <Calendar size={10} className="shrink-0" />
-                <span>{pkg.createdDate}</span>
-              </div>
-              {pkg.createdDate !== pkg.date && (
-                <>
-                  <span className="text-muted-foreground/40 text-xs">→</span>
-                  <span className="text-xs text-muted-foreground">{pkg.date}</span>
-                </>
+              <p className="mt-1 hidden break-all font-mono text-[9px] text-muted-foreground print:block">
+                {pkg.repositoryUrl ?? pkg.npmUrl}
+              </p>
+              {pkg.description && (
+                <p className="mt-2 max-w-[62ch] text-[15px] leading-[1.65] text-muted-foreground">
+                  {pkg.description}
+                </p>
               )}
-              {pkg.monthlyDownloads > 0 && (
-                <>
-                  <span className="text-muted-foreground/40 text-xs">·</span>
-                  <a
-                    href={pkg.npmUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-xs font-medium text-cyan-600 dark:text-cyan-400 hover:underline"
-                  >
-                    <span className="font-bold">npm</span>
-                    <span>{pkg.monthlyDownloads.toLocaleString()}/mo</span>
-                  </a>
-                </>
-              )}
+              <p className="mt-3 font-mono text-[11px] leading-5 text-muted-foreground">
+                {pkg.keywords.slice(0, 6).join(" · ")}
+                {pkg.keywords.length > 0 && " · "}
+                {pkg.createdDate}
+              </p>
             </div>
-
-            {pkg.description && (
-              <p className="mt-2 text-muted-foreground text-sm">{pkg.description}</p>
-            )}
-            {pkg.keywords.length > 0 && (
-              <div className="mt-2 flex flex-wrap gap-1">
-                {pkg.keywords.slice(0, 6).map((k) => (
-                  <Badge key={k}>{k}</Badge>
-                ))}
-              </div>
-            )}
-          </InnerCard>
+          </article>
         ))}
-      </div>
-    </OuterCard>
+    </div>
   );
 };
 

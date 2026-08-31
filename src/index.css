@@ -4,69 +4,71 @@
 
 @layer base {
   :root {
-    --background: 220 14% 96%;
-    --foreground: 222.2 47.4% 11.2%;
+    --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Source Serif 4", Georgia, serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 36%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --background: 60 11% 98%;
+    --foreground: 240 6% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
+    --card-foreground: 240 6% 7%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --muted: 60 5% 94%;
+    --muted-foreground: 227 5% 37%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --border: 60 5% 89%;
+    --input: 60 5% 89%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 151 75% 24%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --primary: 240 6% 7%;
+    --primary-foreground: 0 0% 100%;
 
-    --ring: 215 20.2% 65.1%;
+    --secondary: 60 5% 94%;
+    --secondary-foreground: 240 6% 7%;
 
-    --radius: 0.5rem;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 7%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 151 75% 24%;
+
+    --radius: 0.25rem;
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    --background: 220 12% 5%;
+    --foreground: 220 7% 92%;
 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 74%;
+    --card: 220 14% 9%;
+    --card-foreground: 220 7% 92%;
 
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
+    --muted: 225 14% 16%;
+    --muted-foreground: 222 5% 62%;
 
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
+    --border: 225 14% 16%;
+    --input: 225 14% 16%;
 
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
+    --accent: 149 53% 55%;
+    --accent-foreground: 220 12% 5%;
 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
+    --primary: 220 7% 92%;
+    --primary-foreground: 220 12% 5%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 1.2%;
+    --secondary: 225 14% 16%;
+    --secondary-foreground: 220 7% 92%;
 
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
+    --popover: 220 14% 9%;
+    --popover-foreground: 220 7% 92%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 220 7% 92%;
 
-    --ring: 216 34% 17%;
-
-    --radius: 0.5rem;
+    --ring: 149 53% 55%;
   }
 }
 
@@ -74,11 +76,132 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Every measured outcome on this page is an improvement. Green says so. */
+  .metric {
+    @apply font-mono text-[0.88em] font-medium text-accent whitespace-nowrap;
+  }
+
+  /* Bullets are ledger lines, not decoration: a rule, then the claim. */
+  .ledger > li {
+    @apply relative pl-5;
+  }
+
+  .ledger > li::before {
+    content: "";
+    @apply absolute left-0 top-[0.85em] h-px w-3 bg-accent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  /* Print the light palette even when the reader was viewing in dark mode. */
+  :root,
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 28%;
+    --border: 0 0% 78%;
+    --accent: 0 0% 0%;
+    --primary: 0 0% 0%;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Utilities are single-class specificity, so print overrides need weight. */
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  h1 {
+    font-size: 30px !important;
+    line-height: 1.05 !important;
+  }
+
+  h3 {
+    font-size: 13px !important;
+  }
+
+  /* Screen type at 15-17px on a 62ch measure prints at roughly double the
+     pages it needs. Paper wants smaller type on the full column width. */
+  p,
+  li,
+  dd,
+  dt {
+    font-size: 10.5px !important;
+    line-height: 1.4 !important;
+  }
+
+  header p,
+  article p,
+  article li {
+    max-width: none !important;
+  }
+
+  header {
+    padding-top: 0 !important;
+  }
+
+  section {
+    padding-top: 14px !important;
+  }
+
+  section > div {
+    margin-top: 10px !important;
+  }
+
+  article {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  footer {
+    margin-top: 24px !important;
+  }
+
+  /* Green does not survive a mono printer; weight does. */
+  .metric {
+    font-weight: 600 !important;
+  }
+
+  section,
+  article,
+  dl,
+  li {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
   }
 }

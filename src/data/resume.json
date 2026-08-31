@@ -1,0 +1,255 @@
+{
+  "profile": {
+    "name": "Siddharth Pandey",
+    "title": "Lead Software Engineer",
+    "focus": "Applied AI Systems",
+    "summary": "Full-stack engineer with 13+ years building and leading production systems across logistics, fintech, and e-commerce — from React and Node.js applications to cloud infrastructure and AI-powered workflows. Shipped RAG-based investigation pipelines, published MCP tooling on npm, and automated deployments with Terraform and AWS CDK. Grows teams through hiring, mentoring, and platform standards.",
+    "email": "pandeysiddharth27@gmail.com",
+    "site": "sidd27.github.io",
+    "portrait": "/portrait.webp",
+    "resumePdf": "/siddharth-pandey-resume.pdf",
+    "resumeFileName": "Siddharth-Pandey-Resume.pdf"
+  },
+  "facts": [
+    {
+      "label": "Experience",
+      "value": "13+ years"
+    },
+    {
+      "label": "Based in",
+      "value": "Bengaluru, UTC+5:30"
+    },
+    {
+      "label": "Work",
+      "value": "Remote, global"
+    },
+    {
+      "label": "Available",
+      "value": "Immediately",
+      "status": true
+    }
+  ],
+  "links": [
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/siddharthpandey27"
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "href": "https://github.com/Sidd27"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "href": "https://www.npmjs.com/~sidd27"
+    },
+    {
+      "id": "devto",
+      "label": "Dev.to",
+      "href": "https://dev.to/siddharth_pandey_27"
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "href": "https://medium.com/@siddharthpandey_77104"
+    }
+  ],
+  "skills": [
+    {
+      "label": "AI / LLM",
+      "skills": [
+        "OpenAI SDK",
+        "Anthropic SDK",
+        "RAG",
+        "MCP",
+        "Agentic workflows"
+      ]
+    },
+    {
+      "label": "Frontend",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Svelte",
+        "Next.js",
+        "Angular"
+      ]
+    },
+    {
+      "label": "Backend & data",
+      "skills": [
+        "Node.js",
+        "GraphQL",
+        "PostgreSQL",
+        "MongoDB",
+        "Redis"
+      ]
+    },
+    {
+      "label": "Cloud & IaC",
+      "skills": [
+        "AWS Lambda",
+        "AWS CDK",
+        "Terraform",
+        "AppSync",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "label": "Architecture",
+      "skills": [
+        "Microfrontends",
+        "Module Federation",
+        "Design systems",
+        "Monorepos"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "image": "hypertrack.svg",
+      "company": "HyperTrack",
+      "title": "Lead Software Engineer",
+      "domain": "Workforce automation SaaS · fully serverless on AWS Lambda",
+      "location": "Remote",
+      "period": "Sep 2022 — Jun 2026",
+      "type": "Full-time",
+      "bullets": [
+        "Architected an Insights Agent platform on AWS Lambda using the OpenAI and Anthropic TypeScript SDKs — orchestrates operational data APIs, maintains account-level context caches, and answers natural-language questions about fleet and order operations, cutting mean investigation time for support teams.",
+        "Built a single-order investigation agent that correlates data across services, applies decision logic to surface order-state anomalies, and generates the three most relevant follow-up questions inside a purpose-built chat interface.",
+        "Owned frontend architecture for a multi-tenant platform; modernised legacy React systems into a modular microfrontend architecture that enabled independent team deployments and removed cross-team coupling.",
+        "Led the infrastructure migration from MapTiler to Amazon Location Services with Terraform, cutting platform mapping cost by ~40% with zero end-user disruption.",
+        "Raised Lighthouse from ~23 → ~75 through module-boundary restructuring and code-splitting, and reduced map-heavy page load from ~3s → ~500ms by isolating real-time workflows into lightweight Svelte micro-applications.",
+        "Established org-wide platform standards: a shared component library documented in Storybook, Zustand and TanStack Query conventions, GraphQL schema simplification, and automated CI/CD quality gates.",
+        "Worked directly with enterprise customers through technical support channels to diagnose production issues and shape product workflows."
+      ],
+      "techs": [
+        "React",
+        "TypeScript",
+        "Svelte",
+        "GraphQL / AppSync",
+        "AWS Lambda",
+        "Amazon Location Services",
+        "Terraform",
+        "Zustand",
+        "TanStack Query",
+        "Tailwind"
+      ]
+    },
+    {
+      "image": "telio.webp",
+      "company": "Telio",
+      "title": "Associate Technical Architect",
+      "domain": "B2B e-commerce platform, Vietnam",
+      "location": "Remote",
+      "period": "Oct 2020 — Aug 2022",
+      "type": "Full-time",
+      "bullets": [
+        "Designed the company-wide microfrontend architecture on Single-SPA across Order Management, Inventory, Promotions, Customer Management, and RBAC — enabling independent deployment per domain.",
+        "Led the migration from a monolithic Magento frontend to a distributed microfrontend ecosystem in ~6 months with zero downtime.",
+        "Built and owned GraphQL/AppSync and Node.js services for authentication, authorisation, and core operational workflows.",
+        "Established the shared component library and design system, and shipped multilingual (English/Vietnamese) PWA and Ionic React applications for Southeast Asian markets.",
+        "Grew frontend engineering from solo execution to a distributed team through hiring, onboarding, and structured mentoring."
+      ],
+      "techs": [
+        "React",
+        "Single-SPA",
+        "Node.js",
+        "Fastify",
+        "GraphQL / AppSync",
+        "Ionic React",
+        "Tailwind",
+        "MongoDB"
+      ]
+    },
+    {
+      "image": "lendingkart.webp",
+      "company": "LendingKart",
+      "title": "Software Development Engineer III — Frontend",
+      "domain": "Fintech · SME lending platform",
+      "location": "Bengaluru, India",
+      "period": "Apr 2018 — Aug 2020",
+      "type": "Full-time",
+      "bullets": [
+        "Built an internal landing-page management system (Angular, Node.js, Fastify, MongoDB) that let marketing publish localised vernacular campaigns without an engineering release; Lighthouse ~44 → ~98 and load time ~6s → ~300ms.",
+        "Lifted landing-page conversion ~7% → ~22% with localised, A/B-tested infrastructure supporting 100+ multilingual variants.",
+        "Developed a Puppeteer HTML-to-PDF pipeline for loan and legal documentation, replacing a manual workflow across thousands of monthly transactions.",
+        "Shipped an Angular customer-onboarding dashboard that improved onboarding efficiency ~44% and brought first-interaction latency to ~600ms.",
+        "Mentored junior engineers and partnered with product and business teams on experimentation and growth initiatives."
+      ],
+      "techs": [
+        "Angular",
+        "Node.js",
+        "Fastify",
+        "Svelte (Sapper)",
+        "React",
+        "Puppeteer",
+        "MongoDB"
+      ]
+    },
+    {
+      "image": "coviam.webp",
+      "company": "Coviam Technologies",
+      "title": "Senior Software Developer",
+      "domain": "Product engineering services · PeopleHum HR platform",
+      "location": "Bengaluru, India",
+      "period": "May 2016 — Mar 2018",
+      "type": "Full-time",
+      "bullets": [
+        "Architected the PeopleHum HR platform from greenfield — component architecture plus real-time notification and auth systems on Node.js, MongoDB, Redis, and Socket.io — holding Lighthouse above 90 across products.",
+        "Managed a team of ~5 engineers delivering HR workflows, engagement systems, and enterprise merchant tooling.",
+        "Recognised in internal hackathons for rapid prototyping and engineering innovation."
+      ],
+      "techs": [
+        "AngularJS",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Redis",
+        "Socket.io"
+      ]
+    },
+    {
+      "image": "commonfloor.png",
+      "company": "CommonFloor",
+      "title": "Software Development Engineer",
+      "domain": "Real-estate technology platform",
+      "location": "Bengaluru, India",
+      "period": "Apr 2013 — Apr 2016",
+      "type": "Full-time",
+      "bullets": [
+        "Built hybrid mobile applications with AngularJS, Ionic, and Cordova for a residential community engagement platform, contributing to early hybrid-mobile adoption at scale.",
+        "Developed backend-integrated features with PHP (Zend), MySQL, and JavaScript, and drove mobile usability and performance improvements."
+      ],
+      "techs": [
+        "AngularJS",
+        "Ionic",
+        "Cordova",
+        "JavaScript",
+        "MySQL"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "image": "bit.jpg",
+      "title": "Bachelor of Engineering — Information Technology",
+      "location": "Durg, Chhattisgarh, India",
+      "period": "2008 — 2012",
+      "detail": "Final-year project: E-Panorama, a web-based virtual tour application. Organised technical fests and robotics competitions alongside coursework.",
+      "school": "Bhilai Institute of Technology"
+    }
+  ],
+  "projects": [],
+  "writingTopics": [
+    "Agentic AI",
+    "MCP",
+    "RAG",
+    "LLM limitations",
+    "Micro Frontends",
+    "React / Next.js",
+    "Frontend Performance"
+  ]
+}
