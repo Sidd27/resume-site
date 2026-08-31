@@ -1,73 +1,101 @@
-import { useState, useEffect } from "react";
-import About from "./components/About";
+import { useEffect } from "react";
 import Blogs from "./components/Blogs";
 import Education from "./components/Education";
-import Expereince from "./components/Experience";
-import Information from "./components/Information";
-import ProfileDetails from "./components/ProfileDetails";
+import Experience from "./components/Experience";
+import Masthead from "./components/Masthead";
 import Projects from "./components/Projects";
+import Section from "./components/Section";
 import Skills from "./components/Skills";
-import WritesAbout from "./components/WritesAbout";
 import ThemeToggle from "./components/ThemeToggle";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { ThemeProvider } from "./theme-provider";
+import { useActiveSection } from "./hooks/useActiveSection";
 
-const TABS = ["experience", "projects", "education", "blog"] as const;
-type Tab = (typeof TABS)[number];
+const SECTIONS = [
+  { id: "experience", index: "01", title: "Experience" },
+  { id: "skills", index: "02", title: "Capabilities" },
+  { id: "projects", index: "03", title: "Open source" },
+  { id: "writing", index: "04", title: "Writing" },
+  { id: "education", index: "05", title: "Education" },
+] as const;
 
-function getTabFromHash(): Tab {
-  const hash = window.location.hash.replace("#", "") as Tab;
-  return TABS.includes(hash) ? hash : "experience";
-}
+const SECTION_IDS = SECTIONS.map((section) => section.id);
 
 function App() {
-  const [activeTab, setActiveTab] = useState<Tab>(getTabFromHash);
+  const active = useActiveSection(SECTION_IDS);
 
+  // Old tab links used #blog; keep them landing somewhere real.
   useEffect(() => {
-    const onHashChange = () => setActiveTab(getTabFromHash());
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    if (window.location.hash === "#blog") window.location.hash = "#writing";
   }, []);
-
-  function handleTabChange(value: string) {
-    window.location.hash = value;
-    setActiveTab(value as Tab);
-  }
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-      <ThemeToggle />
-      <main className="md:flex max-w-5xl mx-auto md:p-6 p-2">
-        <aside className="flex flex-col gap-4 md:max-w-80">
-          <ProfileDetails />
-          <Skills />
-          <WritesAbout />
-          <About />
-          <Information />
-        </aside>
-        <div className="md:ml-4 w-full mt-4 md:mt-0">
-          <Tabs value={activeTab} onValueChange={handleTabChange}>
-            <TabsList className="grid w-full grid-cols-4 bg-white dark:bg-gray-800 sticky top-0 z-10 md:static shadow-lg md:shadow-none">
-              <TabsTrigger value="experience">Experience</TabsTrigger>
-              <TabsTrigger value="projects">Projects</TabsTrigger>
-              <TabsTrigger value="education">Education</TabsTrigger>
-              <TabsTrigger value="blog">Blogs</TabsTrigger>
-            </TabsList>
-            <TabsContent value="experience">
-              <Expereince />
-            </TabsContent>
-            <TabsContent value="projects">
-              <Projects />
-            </TabsContent>
-            <TabsContent value="education">
-              <Education />
-            </TabsContent>
-            <TabsContent value="blog">
-              <Blogs />
-            </TabsContent>
-          </Tabs>
+      <div className="min-h-screen">
+        <nav className="sticky top-0 print:hidden z-20 border-b border-border bg-background/90 backdrop-blur">
+          <div className="mx-auto flex max-w-3xl items-center gap-4 px-5 py-3 md:px-8">
+            <a
+              href="#top"
+              className="shrink-0 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground"
+            >
+              S. Pandey
+            </a>
+            <div className="flex flex-1 gap-4 overflow-x-auto">
+              {SECTIONS.map((section) => (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className={`whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.12em] transition-colors hover:text-foreground ${
+                    active === section.id
+                      ? "text-accent"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {section.title}
+                </a>
+              ))}
+            </div>
+            <ThemeToggle />
+          </div>
+        </nav>
+
+        <div id="top" className="mx-auto max-w-3xl px-5 pb-20 md:px-8">
+          <Masthead />
+
+          <Section {...SECTIONS[0]}>
+            <Experience />
+          </Section>
+          <Section {...SECTIONS[1]}>
+            <Skills />
+          </Section>
+          <Section {...SECTIONS[2]}>
+            <Projects />
+          </Section>
+          <Section {...SECTIONS[3]}>
+            <Blogs />
+          </Section>
+          <Section {...SECTIONS[4]}>
+            <Education />
+          </Section>
+
+          <footer className="mt-20 border-t border-border pt-6 font-mono text-[11px] leading-5 text-muted-foreground">
+            <p>
+              Built with React, TypeScript, and Tailwind. Source on{" "}
+              <a
+                href="https://github.com/Sidd27"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline underline-offset-2 hover:text-accent"
+              >
+                GitHub
+              </a>
+              .
+            </p>
+            <p className="mt-1">
+              pandeysiddharth27@gmail.com · Bengaluru, India
+            </p>
+          </footer>
         </div>
-      </main>
+      </div>
     </ThemeProvider>
   );
 }

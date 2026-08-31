@@ -1,122 +1,79 @@
 import * as React from "react";
 import { useState } from "react";
-import { InnerCard, OuterCard } from "./common/Cards";
-import { WRITING_TOPICS } from "@/constants";
+import { WRITING_TOPICS } from "@/data";
 import { useBlogs } from "@/hooks/useBlogs";
 
-const PAGE_SIZE = 5;
-
-const SourceBadge: React.FC<{ source: "devto" | "medium" }> = ({ source }) => (
-  <span
-    className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-      source === "devto"
-        ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300"
-        : "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
-    }`}
-  >
-    {source === "devto" ? "Dev.to" : "Medium"}
-  </span>
-);
-
-const BlogSkeleton: React.FC = () => (
-  <InnerCard>
-    <div className="animate-pulse space-y-2">
-      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/4" />
-      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
-      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-full" />
-      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6" />
-    </div>
-  </InnerCard>
-);
+const PAGE_SIZE = 6;
 
 const Blogs: React.FC = () => {
   const { blogs, loading, error } = useBlogs();
   const [visible, setVisible] = useState(PAGE_SIZE);
-  const visibleBlogs = blogs.slice(0, visible);
 
   return (
-    <OuterCard>
-      <div className="space-y-2 pt-1">
-        <div className="flex items-start gap-2 px-0.5 flex-wrap">
-          <span className="text-xs text-muted-foreground shrink-0 pt-0.5">Writes about:</span>
-          <div className="flex flex-wrap gap-1">
-            {WRITING_TOPICS.map((topic) => (
-              <span
-                key={topic}
-                className="text-xs px-2 py-0.5 rounded-full border border-cyan-300 text-cyan-700 dark:border-cyan-700 dark:text-cyan-400"
-              >
-                {topic}
-              </span>
-            ))}
-          </div>
-        </div>
-        {loading && (
-          <>
-            <BlogSkeleton />
-            <BlogSkeleton />
-            <BlogSkeleton />
-          </>
-        )}
-        {error && (
-          <div className="text-sm text-muted-foreground px-2">{error}</div>
-        )}
-        {!loading &&
-          visibleBlogs.map((blog, index) => (
-            <InnerCard key={index}>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-muted-foreground">
-                  {blog.displayDate}
-                  {blog.readingTime && ` · ${blog.readingTime} min read`}
-                </span>
-                <SourceBadge source={blog.source} />
-              </div>
-              <a
-                href={blog.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline text-foreground font-semibold text-sm block mb-2"
-              >
-                {blog.title}
-              </a>
-              <div className="text-muted-foreground text-sm">
-                {blog.description}
-              </div>
-              {blog.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {blog.tags.slice(0, 4).map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-muted-foreground"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <a
-                href={blog.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block hover:underline text-foreground font-semibold text-sm mt-3"
-              >
-                Read More →
-              </a>
-            </InnerCard>
+    <div>
+      <p className="mb-6 max-w-[62ch] font-mono text-[11px] leading-5 text-muted-foreground">
+        <span className="uppercase tracking-[0.14em] text-foreground">
+          Topics
+        </span>
+        <span className="px-2 text-border">/</span>
+        {WRITING_TOPICS.join(" · ")}
+      </p>
+
+      <div className="divide-y divide-border border-t border-border">
+        {loading &&
+          [0, 1, 2].map((i) => (
+            <div key={i} className="animate-pulse space-y-2 py-6">
+              <div className="h-4 w-2/3 rounded bg-muted" />
+              <div className="h-3 w-1/3 rounded bg-muted" />
+            </div>
           ))}
-        {!loading && blogs.length > PAGE_SIZE && (
-          <button
-            onClick={() =>
-              setVisible((v) => (v >= blogs.length ? PAGE_SIZE : blogs.length))
-            }
-            className="w-full mt-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {visible >= blogs.length
-              ? "Show less"
-              : `Show ${blogs.length - visible} more`}
-          </button>
-        )}
+        {error && <p className="py-6 text-sm text-muted-foreground">{error}</p>}
+
+        {!loading &&
+          blogs.slice(0, visible).map((blog, index) => (
+            <article key={index} className="py-6">
+              <a
+                href={blog.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group grid gap-x-8 gap-y-2 md:grid-cols-[9.5rem_1fr]"
+              >
+                <p className="font-mono text-[11px] leading-5 text-muted-foreground">
+                  {blog.displayDate}
+                  <span className="mt-1 block">
+                    {blog.source === "devto" ? "Dev.to" : "Medium"}
+                    {blog.readingTime && ` · ${blog.readingTime} min`}
+                  </span>
+                </p>
+                <div className="min-w-0">
+                  <h3 className="font-display text-base font-semibold leading-snug tracking-[-0.01em] text-foreground underline-offset-4 group-hover:underline">
+                    {blog.title}
+                  </h3>
+                  <p className="mt-1 hidden break-all font-mono text-[9px] text-muted-foreground print:block">
+                    {blog.link}
+                  </p>
+                  <p className="mt-2 max-w-[62ch] text-[15px] leading-[1.6] text-muted-foreground print:hidden">
+                    {blog.description}
+                  </p>
+                </div>
+              </a>
+            </article>
+          ))}
       </div>
-    </OuterCard>
+
+      {!loading && blogs.length > PAGE_SIZE && (
+        <button
+          onClick={() =>
+            setVisible((v) => (v >= blogs.length ? PAGE_SIZE : blogs.length))
+          }
+          className="mt-6 rounded border border-border px-4 py-2 print:hidden font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+        >
+          {visible >= blogs.length
+            ? "Show less"
+            : `Show ${blogs.length - visible} more`}
+        </button>
+      )}
+    </div>
   );
 };
 

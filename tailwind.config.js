@@ -4,7 +4,7 @@ import tailwindCSSAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
-  content: ["src/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+  content: ["src/**/*.{ts,tsx}"],
   theme: {
     container: {
       center: true,
@@ -55,7 +55,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        display: ["var(--font-display)", ...fontFamily.sans],
+        sans: ["var(--font-sans)", ...fontFamily.serif],
+        serif: ["var(--font-sans)", ...fontFamily.serif],
+        mono: ["var(--font-mono)", ...fontFamily.mono],
       },
       keyframes: {
         "accordion-down": {

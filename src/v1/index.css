@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    --background: 60 12% 95%;
+    --foreground: 223 14% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 223 14% 10%;
+
+    --muted: 60 8% 92%;
+    --muted-foreground: 214 7% 38%;
+
+    --border: 60 8% 88%;
+    --input: 60 8% 88%;
+
+    --accent: 180 82% 24%;
+    --accent-foreground: 0 0% 100%;
+
+    --primary: 223 14% 10%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 60 8% 92%;
+    --secondary-foreground: 223 14% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 223 14% 10%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 180 82% 24%;
+
+    --radius: 0.375rem;
+  }
+
+  .dark {
+    --background: 214 18% 8%;
+    --foreground: 216 12% 92%;
+
+    --card: 216 18% 11%;
+    --card-foreground: 216 12% 92%;
+
+    --muted: 215 14% 17%;
+    --muted-foreground: 214 9% 64%;
+
+    --border: 215 14% 17%;
+    --input: 215 14% 17%;
+
+    --accent: 176 40% 51%;
+    --accent-foreground: 214 18% 8%;
+
+    --primary: 216 12% 92%;
+    --primary-foreground: 214 18% 8%;
+
+    --secondary: 215 14% 17%;
+    --secondary-foreground: 216 12% 92%;
+
+    --popover: 216 18% 11%;
+    --popover-foreground: 216 12% 92%;
+
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 216 12% 92%;
+
+    --ring: 176 40% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  .metric {
+    @apply font-mono text-[0.92em] font-medium text-accent whitespace-nowrap;
+  }
+
+  .entry-list > li {
+    @apply relative pl-4;
+  }
+
+  .entry-list > li::before {
+    content: "";
+    @apply absolute left-0 top-[0.7em] h-px w-2.5 bg-accent/60;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
