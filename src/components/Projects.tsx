@@ -59,7 +59,7 @@ const Projects: React.FC = () => {
             key={pkg.name}
             className="grid gap-x-8 gap-y-3 py-8 md:grid-cols-[9.5rem_1fr]"
           >
-            <div className="font-mono text-[11px] leading-5">
+            <div className="flex flex-wrap items-baseline gap-x-2 font-mono text-[11px] leading-5 md:block">
               {pkg.monthlyDownloads > 0 ? (
                 <a
                   href={pkg.npmUrl}
@@ -72,7 +72,7 @@ const Projects: React.FC = () => {
               ) : (
                 <span className="text-muted-foreground">npm</span>
               )}
-              <span className="mt-1 block text-muted-foreground">
+              <span className="text-muted-foreground md:mt-1 md:block">
                 v{pkg.version}
               </span>
             </div>

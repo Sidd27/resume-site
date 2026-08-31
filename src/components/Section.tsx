@@ -9,7 +9,7 @@ interface SectionProps {
 
 /** A numbered section of the document. The number is the reading order. */
 const Section: React.FC<SectionProps> = ({ id, index, title, children }) => (
-  <section id={id} className="scroll-mt-24 pt-14 md:pt-20">
+  <section id={id} className="scroll-mt-20 pt-12 md:scroll-mt-24 md:pt-20">
     <div className="flex items-baseline gap-4">
       <span className="font-mono text-xs text-accent">{index}</span>
       <h2 className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-foreground">

@@ -29,7 +29,7 @@ export default function ThemeToggle() {
     <button
       onClick={next}
       title={LABELS[theme as Theme]}
-      className="flex h-8 w-8 items-center justify-center rounded border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+      className="flex h-10 w-10 items-center justify-center rounded border border-border md:h-8 md:w-8 text-muted-foreground transition-colors hover:border-accent hover:text-accent"
     >
       {ICONS[theme as Theme]}
     </button>
